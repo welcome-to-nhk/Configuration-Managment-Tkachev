@@ -1,0 +1,4 @@
+vfs-info
+ls "папка с пробелом"
+cd /docs
+unknown-command

@@ -1,0 +1,6 @@
+ls
+ls "папка с пробелом"
+cd "/путь с пробелом"
+unknown-command
+exit extra
+exit
