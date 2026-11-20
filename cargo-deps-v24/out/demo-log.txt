@@ -1,0 +1,165 @@
+$ python -m src --package A --test --repository examples/diamond.json --stage 1
+package=A
+repository=examples/diamond.json
+test=True
+output=out/graph.svg
+exclude=
+exit_code=0
+
+$ python -m src --package A --test --repository examples/diamond.json --stage 2
+Пакет: A
+Прямые зависимости:
+  B
+  C
+exit_code=0
+
+$ python -m src --package A --test --repository examples/diamond.json --stage 3
+A -> B, C
+B -> D
+D -> (нет)
+C -> D
+exit_code=0
+
+$ python -m src --package A --test --repository examples/diamond.json --stage 4
+Порядок загрузки (зависимости раньше потребителей):
+D -> B -> C -> A
+exit_code=0
+
+$ python -m src --package A --test --repository examples/diamond.json --stage 5
+PlantUML: out\graph.puml
+SVG: out\graph.svg
+exit_code=0
+
+$ python -m src --package A --test --repository examples/chain.json --stage 3
+A -> B
+B -> C
+C -> (нет)
+exit_code=0
+
+$ python -m src --package A --test --repository examples/chain.json --stage 4
+Порядок загрузки (зависимости раньше потребителей):
+C -> B -> A
+exit_code=0
+
+$ python -m src --package A --test --repository examples/chain.json --output out/chain.svg
+PlantUML: out\chain.puml
+SVG: out\chain.svg
+exit_code=0
+
+$ python -m src --package A --test --repository examples/cycle.json --stage 3
+A -> B
+B -> C
+C -> A
+Цикл: A -> B -> C -> A
+exit_code=0
+
+$ python -m src --package A --test --repository examples/cycle.json --stage 4
+Ошибка: Порядок загрузки невозможен: цикл A -> B -> C -> A
+exit_code=1
+
+$ python -m src --package A --test --repository examples/cycle.json --output out/cycle.svg
+PlantUML: out\cycle.puml
+SVG: out\cycle.svg
+Внимание: граф содержит циклы; они сохранены на диаграмме
+exit_code=0
+
+$ python -m src --package A --test --repository examples/self.json --stage 3
+A -> A
+Цикл: A -> A
+exit_code=0
+
+$ python -m src --package A --test --repository examples/self.json --stage 4
+Ошибка: Порядок загрузки невозможен: цикл A -> A
+exit_code=1
+
+$ python -m src --package A --test --repository examples/self.json --output out/self.svg
+PlantUML: out\self.puml
+SVG: out\self.svg
+Внимание: граф содержит циклы; они сохранены на диаграмме
+exit_code=0
+
+$ python -m src --package A --test --repository examples/isolated.json --stage 3
+A -> (нет)
+exit_code=0
+
+$ python -m src --package A --test --repository examples/isolated.json --stage 4
+Порядок загрузки (зависимости раньше потребителей):
+A
+exit_code=0
+
+$ python -m src --package A --test --repository examples/isolated.json --output out/isolated.svg
+PlantUML: out\isolated.puml
+SVG: out\isolated.svg
+exit_code=0
+
+$ python -m src --package A --test --repository examples/filter.json --stage 3
+A -> B, XC
+B -> D
+D -> (нет)
+XC -> Z
+Z -> (нет)
+exit_code=0
+
+$ python -m src --package A --test --repository examples/filter.json --stage 4
+Порядок загрузки (зависимости раньше потребителей):
+D -> B -> Z -> XC -> A
+exit_code=0
+
+$ python -m src --package A --test --repository examples/filter.json --output out/filter.svg
+PlantUML: out\filter.puml
+SVG: out\filter.svg
+exit_code=0
+
+$ python -m src --package A --test --repository examples/filter.json --filter X --stage 3
+A -> B
+B -> D
+D -> (нет)
+exit_code=0
+
+$ python -m src --package crc32fast --repository http://127.0.0.1:52461 --stage 2
+Пакет: crc32fast@1.5.0
+Прямые зависимости:
+  cfg-if@1.0.4
+exit_code=0
+
+$ python -m src --package crc32fast --repository http://127.0.0.1:52461 --stage 4
+Порядок загрузки (зависимости раньше потребителей):
+cfg-if@1.0.4 -> crc32fast@1.5.0
+exit_code=0
+
+$ python -m src --package crc32fast --repository http://127.0.0.1:52461 --output out/crc32fast.svg
+PlantUML: out\crc32fast.puml
+SVG: out\crc32fast.svg
+exit_code=0
+
+$ python -m src --package miniz_oxide --repository http://127.0.0.1:52461 --stage 2
+Пакет: miniz_oxide@0.8.9
+Прямые зависимости:
+  adler2@2.0.1
+exit_code=0
+
+$ python -m src --package miniz_oxide --repository http://127.0.0.1:52461 --stage 4
+Порядок загрузки (зависимости раньше потребителей):
+adler2@2.0.1 -> miniz_oxide@0.8.9
+exit_code=0
+
+$ python -m src --package miniz_oxide --repository http://127.0.0.1:52461 --output out/miniz_oxide.svg
+PlantUML: out\miniz_oxide.puml
+SVG: out\miniz_oxide.svg
+exit_code=0
+
+$ python -m src --package itoa --repository http://127.0.0.1:52461 --stage 2
+Пакет: itoa@1.0.15
+Прямые зависимости:
+exit_code=0
+
+$ python -m src --package itoa --repository http://127.0.0.1:52461 --stage 4
+Порядок загрузки (зависимости раньше потребителей):
+itoa@1.0.15
+exit_code=0
+
+$ python -m src --package itoa --repository http://127.0.0.1:52461 --output out/itoa.svg
+PlantUML: out\itoa.puml
+SVG: out\itoa.svg
+exit_code=0
+

@@ -1,0 +1,8 @@
+@startuml
+left to right direction
+skinparam componentStyle rectangle
+skinparam shadowing false
+component "crc32fast@1.5.0" as n0
+component "cfg-if@1.0.4" as n1
+n0 --> n1
+@enduml
