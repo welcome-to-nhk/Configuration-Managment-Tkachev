@@ -1,1 +1,0 @@
-{"name":"cfg-if","vers":"1.0.4","deps":[{"name":"core","req":"^1.0.0","kind":"normal","optional":true,"features":[],"default_features":true,"target":null,"package":"rustc-std-workspace-core"}],"features":{"rustc-dep-of-std":["core"]},"yanked":false}

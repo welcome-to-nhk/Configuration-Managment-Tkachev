@@ -1,1 +1,0 @@
-{"name":"itoa","vers":"1.0.15","deps":[{"name":"no-panic","req":"^0.1","kind":"normal","optional":true,"features":[],"default_features":true,"target":null}],"features":{},"yanked":false}
